@@ -34,16 +34,16 @@
 
 
 
-
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: [{
-            label: 'price',
-            datasets: dataCSV.price
-          }]
-
-          
+      var chart = new Chart('chart', {
+        type: 'bar',
+        data: {
+          labels: ['A', 'B', 'C'],
+          datasets: [
+            {
+              data: [10, 20, 30]
+            }
+          ]
+        }
       });
 
     </script>
