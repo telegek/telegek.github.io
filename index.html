@@ -28,23 +28,24 @@
 
 
     <script>
-      d3.csv("test.csv", function(dataCSV) {});
+      dataCSV = d3.csv("test.csv");
 
 
 
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: dataCSV,
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: dataCSV,
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+
     </script>
 
 
