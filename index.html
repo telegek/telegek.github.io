@@ -38,14 +38,12 @@
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
           type: 'bar',
-          data: dataCSV,
-          options: {
-              scales: {
-                  y: {
-                      beginAtZero: true
-                  }
-              }
-          }
+          data: [{
+            label: 'price',
+            datasets: dataCSV.price
+          }]
+
+          
       });
 
     </script>
