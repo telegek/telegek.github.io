@@ -29,33 +29,34 @@
 
 
     <script>
-      dataCSV = d3.csv("test.csv", function(data) {
-        console.log(data);
-      });
+      d3.csv('test.csv').then(makeChart);
 
+      function makeChart(stocks) {
+        
+        var stockTickers = stocks.map(function(d) {return d.Tickers});
+        var stockPurchasedPrice = stocks.map(function(d) {return d.Price});
 
-
-      var chart = new Chart('chart', {
-        type: 'bar',
-        data: {
-          labels: ['A', 'B', 'C'],
-          datasets: [
-            {
-              data: [10, 20, 30]
+        var chart = new Chart('chart', {
+          type: 'bar',
+          data: {
+            labels: stockTickers,
+            datasets: [
+              {
+                data: stockPurchasedPrice
+              }
+            ]
+          },
+          options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
             }
-          ]
-        },
-        options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
           }
-        }
-      });
-
+        });
+    }
     </script>
 
 
