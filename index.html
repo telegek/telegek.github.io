@@ -29,7 +29,9 @@
 
 
     <script>
-      d3.csv('test.csv').then(makeChart);
+      d3
+        .csv("test.csv")
+        .then(makeChart);
 
       function makeChart(stocks) {
         
