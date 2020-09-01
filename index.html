@@ -9,10 +9,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <script src="https://cdnjs.com/libraries/Chart.js"></script>
+
+
   </head>
   <body>
 
     <p>Hello, world!</p>
+    <canvas id="myChart" width="400" height="400"></canvas>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
@@ -24,14 +28,24 @@
 
 
     <script>
-      d3.csv("test.csv", function(data) {
-          for (var i = 0; i < data.length; i++) {
-              console.log(data[i].Ticker);
-              console.log(data[i].Shares);
-              console.log(data[i].Price);
-          }
-      });
-      </script>
+      d3.csv("test.csv", function(dataCSV) {});
+
+
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: dataCSV,
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+    </script>
 
 
   </body>
