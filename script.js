@@ -32,11 +32,12 @@ var tabulate = function (data,columns) {
 
 d3.csv('data/data.csv')
 .then(function(data) {
-  const columns = ['Instrument/ISIN','Quantity', 'Price', 'Direction', 'Trading day']
+  data.columns[2] = 'Ticker'
+  const columns = ['Ticker','Quantity', 'Price', 'Direction', 'Trading day']
   // tabulate(data,columns)
   
   data.forEach(function(d) {
-    d["Instrument/ISIN"]= d["Instrument/ISIN"].slice(0, -13);
+    d["Ticker"]= d["Ticker"].slice(0, -13);
     d["Price"]= d["Price"].slice(0, -4);
   });
   console.log(data[0]);
