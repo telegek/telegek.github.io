@@ -11,7 +11,7 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <!-- <h1>Hello, world!</h1> -->
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -21,10 +21,74 @@
 
 
     <!-- Include D3.js -->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- <script src="https://d3js.org/d3.v5.min.js"></script>
 
 
-    <script src=scripts/process.js></script>
+    <script src=scripts/process.js></script> -->
+    <h1>Loading CSV and processing the data.</h1>
+    <p>The data: </p>
+    <p>Country: sum, y1990, y2000, y2010, y2013, difference</p>
+
+    <script type="text/javascript">
+
+        //Load in contents of CSV file, and do things to the data.
+
+        var total1990 = 0;
+        var total2000 = 0;
+        var total2010 = 0;
+        var total2013 = 0;
+
+        d3.csv("refugee_data.csv", function(error, data) {
+
+            if (error) {
+                console.log("Had an error loading file.");
+            }
+            // let's do things to the data here.  This is VERY COMMON in d3 code.
+            console.log(data);
+
+            // Your arguments for forEach are the item and it's number in the array:
+            data.forEach(function(data_item, index){
+
+                // NB: it's much more common to see (d, i) as shorthand in D3 code.
+
+
+                // here we are making strings into numbers using type coercion:
+                data_item.y1990 = +data_item.y1990;
+                data_item.y2000 = +data_item.y2000;
+                data_item.y2010 = +data_item.y2010;
+                data_item.y2013 = +data_item.y2013;
+
+                // now we add another data object value, a calculated value.
+                data_item.difference = data_item.y2013 - data_item.y2010;
+                data_item.sum = data_item.y1990 + data_item.y2000 + data_item.y2010 + data_item.y2013
+
+            });
+
+            // Sorting:
+
+            data.sort(function (a, b) {
+                return b.sum-a.sum;
+            });
+
+            // Suppose you wanted it sorted the other way?  How would you do that?
+
+            console.log("sorted", data);
+
+            d3.select("body").selectAll("p")
+            .data(data)
+            .enter()
+            .append("p")
+            .text(function(data_item, index) { return data_item.country + ": " + data_item.sum + " " + data_item.y1990  + " " + data_item.y2000 + " " + data_item.y2010 + " " + data_item.y2013 + " " + data_item.difference; });
+
+        });
+
+    // Notice this below doesn't work.  It's outside the scope of the function that loaded the data.  You need to keep your operations on data inside the loading callback.
+
+    //console.log("my data now", data);
+
+    // what do you expect these values to be now?  what's going on?
+
+    </script>
 
 
     <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
