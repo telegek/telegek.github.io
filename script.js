@@ -35,8 +35,10 @@ d3.csv('data/data.csv')
   const columns = ['Instrument/ISIN','Quantity', 'Price', 'Direction', 'Trading day']
   // tabulate(data,columns)
   
-
-  console.log(data[0].Quantity);
+  data.forEach(function(d) {
+    d.["Instrument/ISIN"]= d.["Instrument/ISIN"].slice(0, -13);
+  });
+  console.log(data[0]);
   // tabulate(data,columns)
   // byticker = d3.group(data, d => d.'Instrument/ISIN')
   // tabulate(byticker, columns)
