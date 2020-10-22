@@ -36,12 +36,12 @@ d3.csv('data/data.csv')
   const columns = ['Ticker','Quantity', 'Price', 'Direction', 'Trading day']
   // tabulate(data,columns)
   
-  data.forEach(function(d) {
-    d["Ticker"]= d["Ticker"].slice(0, -13);
-    d["Price"]= d["Price"].slice(0, -4);
-  });
+  // data.forEach(function(d) {
+  //   d["Ticker"]= d["Ticker"].slice(0, -13);
+  //   d["Price"]= d["Price"].slice(0, -4);
+  // });
   console.log(data[0]);
-  tabulate(data,columns)
+  // tabulate(data,columns)
   // byticker = d3.group(data, d => d.'Instrument/ISIN')
   // tabulate(byticker, columns)
 });
