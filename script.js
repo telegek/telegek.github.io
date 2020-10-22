@@ -37,7 +37,13 @@ d3.csv('data/data.csv')
   data.forEach(function(d) {
     d["Instrument/ISIN"]= d["Instrument/ISIN"].slice(0, -13);
     d["Price"]= d["Price"].slice(0, -4);
-    d["Price"] = +d["Price"];
+    // if (condition) {
+    //   //  block of code to be executed if the condition is true
+    // } else {
+    //   //  block of code to be executed if the condition is false
+    // }
+    if (d["Direction"] == "Sell") {d["Price"] = +d["Price"] * -1;} else {d["Price"] = +d["Price"];}
+    // d["Price"] = +d["Price"];
     d["Quantity"] = +d["Quantity"];
   });
   console.log(data[0]);
