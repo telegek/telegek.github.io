@@ -36,7 +36,7 @@ d3.csv('data/data.csv')
   // tabulate(data,columns)
   
 
-  console.log(data.Quantity[0]);
+  console.log(data[0]);
   // tabulate(data,columns)
   // byticker = d3.group(data, d => d.'Instrument/ISIN')
   // tabulate(byticker, columns)
