@@ -30,22 +30,22 @@ var tabulate = function (data,columns) {
   return table;
 }
 
+var make_single_stocks = function(data) {
+
+}
+
 d3.csv('data/data.csv')
 .then(function(data) {
-  const columns = ['Instrument/ISIN','Quantity', 'Price', 'Direction', 'Trading day']
+  const columns = ['Instrument/ISIN','Quantity', 'Price', 'Trading day']
   
   data.forEach(function(d) {
     d["Instrument/ISIN"]= d["Instrument/ISIN"].slice(0, -13);
     d["Price"]= d["Price"].slice(0, -4);
-    // if (condition) {
-    //   //  block of code to be executed if the condition is true
-    // } else {
-    //   //  block of code to be executed if the condition is false
-    // }
-    if (d["Direction"] == "Sell") {d["Price"] = +d["Price"] * -1;} else {d["Price"] = +d["Price"];}
-    // d["Price"] = +d["Price"];
-    d["Quantity"] = +d["Quantity"];
+    if (d["Direction"] == "Sell") {d["Quantity"] = +d["Quantity"] * -1;} else {d["Quantity"] = +d["Quantity"];}
+    d["Price"] = +d["Price"];
   });
-  console.log(data[0]);
-  tabulate(data,columns)
+  map = d3.rollup(data, v => d3.sum(v, d => d["Quantity"], d => d["Instrument/ISIN"]);
+  console.log(map);
+  tabulate(data, columns)
+  make_single_stocks()
 });
