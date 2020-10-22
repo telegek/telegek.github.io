@@ -31,6 +31,6 @@ var tabulate = function (data,columns) {
 }
 d3.csv('data/data.csv')
 .then(function(data) {
-  const columns = ['Instrument/ISIN','Quantity', 'Price', 'Trading day']
+  const columns = ['Instrument/ISIN','Quantity', 'Price', 'Direction', 'Trading day']
   tabulate(data,columns)
 });
