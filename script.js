@@ -37,6 +37,7 @@ d3.csv('data/data.csv')
   
   data.forEach(function(d) {
     d["Instrument/ISIN"]= d["Instrument/ISIN"].slice(0, -13);
+    d["Price"]= d["Price"].slice(0, -4);
   });
   console.log(data[0]);
   // tabulate(data,columns)
