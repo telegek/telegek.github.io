@@ -44,7 +44,7 @@ d3.csv('data/data.csv')
     if (d["Direction"] == "Sell") {d["Quantity"] = +d["Quantity"] * -1;} else {d["Quantity"] = +d["Quantity"];}
     d["Price"] = +d["Price"];
   });
-  map = d3.rollup(data, v => d3.sum(v, d => d["Quantity"], d => d["Instrument/ISIN"]);
+  map = d3.rollup(data, v => d3.sum(v, d => d["Quantity"]), d => d["Instrument/ISIN"]);
   console.log(map);
   tabulate(data, columns)
   make_single_stocks()
