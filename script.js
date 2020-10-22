@@ -32,7 +32,7 @@ var tabulate = function (data,columns) {
 
 d3.csv('data/data.csv')
 .then(function(data) {
-  data.columns[2] = 'Ticker'
+  data.columns[2] = "Ticker"
   const columns = ['Ticker','Quantity', 'Price', 'Direction', 'Trading day']
   // tabulate(data,columns)
   
