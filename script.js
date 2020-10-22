@@ -40,7 +40,7 @@ d3.csv('data/data.csv')
     d["Price"]= d["Price"].slice(0, -4);
   });
   console.log(data[0]);
-  // tabulate(data,columns)
+  tabulate(data,columns)
   // byticker = d3.group(data, d => d.'Instrument/ISIN')
   // tabulate(byticker, columns)
 });
