@@ -54,9 +54,34 @@ d3.csv('data/data.csv')
     d["Price"] = +d["Price"];
   });
 
+
+
+  function createTable(tableData) {
+    var table = document.createElement('table');
+    var tableBody = document.createElement('tbody');
+  
+    tableData.forEach(function(rowData) {
+      var row = document.createElement('tr');
+  
+      rowData.forEach(function(cellData) {
+        var cell = document.createElement('td');
+        cell.appendChild(document.createTextNode(cellData));
+        row.appendChild(cell);
+      });
+  
+      tableBody.appendChild(row);
+    });
+  
+    table.appendChild(tableBody);
+    document.body.appendChild(table);
+  }
+
+
+
   map = d3.rollups(data, v => d3.sum(v, d => d["Total amount"]), d => d["Instrument/ISIN"]);
   console.log(map[0]);
   console.log(data[0]);
-  tabulate(map, columns)
+  // tabulate(map, columns)
+  createTable(map);
   make_single_stocks()
 });
