@@ -50,10 +50,11 @@ d3.csv('data/data.csv')
     } 
       else {
         d["Quantity"] = +d["Quantity"];
-        d["Total cost"] = +d["Total cost"];
+        d["Total amount"] = +d["Total amount"];
       }
     d["Price"] = +d["Price"];
   });
+
   map = d3.rollup(data, v => d3.sum(v, d => d["Total amount"]), d => d["Instrument/ISIN"]);
   console.log(map);
   console.log(data[0])
