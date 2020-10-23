@@ -84,7 +84,7 @@ d3.csv('data/data.csv')
   // sorted_total_amount = total_amount.foods.slice().sort((a, b) => d3.descending(a[1], b[1]))
   // map.sort(d3.ascending)
 
-  console.log(sorted_total_amount)
+  // console.log(sorted_total_amount)
 
   // createTable(map);
   make_single_stocks()
