@@ -78,8 +78,8 @@ d3.csv('data/data.csv')
 
 
 
-  total_amount = d3.rollups(data, v => d3.sum(v, d => d["Total amount"]), d => d["Instrument/ISIN"]);
-  quantity = d3.rollups(data, v => d3.sum(v, d => d["Quantity"]), d => d["Instrument/ISIN"]);
+  total_amount = d3.rollup(data, v => d3.sum(v, d => d["Total amount"]), d => d["Instrument/ISIN"]);
+  quantity = d3.rollup(data, v => d3.sum(v, d => d["Quantity"]), d => d["Instrument/ISIN"]);
   console.log(total_amount)
   // sorted_total_amount = total_amount.foods.slice().sort((a, b) => d3.descending(a[1], b[1]))
   // map.sort(d3.ascending)
