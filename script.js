@@ -55,8 +55,8 @@ d3.csv('data/data.csv')
   });
 
   map = d3.rollups(data, v => d3.sum(v, d => d["Total amount"]), d => d["Instrument/ISIN"]);
-  console.log(map);
-  console.log(data)
+  console.log(map[0]);
+  console.log(data[0]);
   tabulate(map, columns)
   make_single_stocks()
 });
