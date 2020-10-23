@@ -44,7 +44,7 @@ d3.csv('data/data.csv')
     d["Total cost"]= d["Total cost"].slice(0, -4);
     if (d["Direction"] == "Sell") {
       d["Quantity"] = +d["Quantity"] * -1;
-      d["Total cost" = +d["Total cost"] *  -1;
+      d["Total cost"] = +d["Total cost"] *  -1;
     } 
       else {
         d["Quantity"] = +d["Quantity"];
