@@ -87,6 +87,6 @@ d3.csv('data/data.csv')
 
   console.log(sorted_total_amount)
 
-  // createTable(map);
+  createTable(sorted_total_amount);
   make_single_stocks()
 });
