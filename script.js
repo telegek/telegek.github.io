@@ -1,4 +1,4 @@
-var tabulate = function (data,columns) {
+var tabulate = function (data, columns) {
   var table = d3.select('#myTable') 
   var thead = table.append('thead')
   var tbody = table.append('tbody')
@@ -56,7 +56,7 @@ d3.csv('data/data.csv')
 
   map = d3.rollups(data, v => d3.sum(v, d => d["Total amount"]), d => d["Instrument/ISIN"]);
   console.log(map);
-  console.log(data[0])
+  console.log(data)
   tabulate(map, columns)
   make_single_stocks()
 });
