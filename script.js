@@ -82,7 +82,7 @@ d3.csv('data/data.csv')
   quantity = d3.rollups(data, v => d3.sum(v, d => d["Quantity"]), d => d["Instrument/ISIN"]);
   console.log(total_amount)
   // .sort((a, b) => a[1] - b[1]);
-  // sorted_total_amount = total_amount.slice().sort((a, b) => d3.descending(a[1], b[1]))
+  sorted_total_amount = total_amount.slice().sort((a, b) => d3.descending(a[1], b[1]))
   // map.sort(d3.ascending)
 
   console.log(sorted_total_amount)
