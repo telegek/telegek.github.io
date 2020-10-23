@@ -39,12 +39,14 @@ d3.csv('data/data.csv')
   const columns = ['Instrument/ISIN','Quantity', 'Price', 'Trading day']
   
   data.forEach(function(d) {
+
     d["Instrument/ISIN"]= d["Instrument/ISIN"].slice(0, -13);
     d["Price"]= d["Price"].slice(0, -4);
-    d["Total cost"]= d["Total cost"].slice(0, -4);
+    d["Total amount"]= d["Total amount"].slice(0, -4);
+
     if (d["Direction"] == "Sell") {
       d["Quantity"] = +d["Quantity"] * -1;
-      d["Total cost"] = +d["Total cost"] *  -1;
+      d["Total amount"] = +d["Total amount"] *  -1;
     } 
       else {
         d["Quantity"] = +d["Quantity"];
@@ -53,7 +55,7 @@ d3.csv('data/data.csv')
     d["Price"] = +d["Price"];
   });
   map = d3.rollup(data, v => d3.sum(v, d => d["Total cost"]), d => d["Instrument/ISIN"]);
-  // console.log(map);
+  console.log(map);
   console.log(data[0])
   tabulate(data, columns)
   make_single_stocks()
