@@ -83,7 +83,7 @@ d3.csv('data/data.csv')
   xScale.domain(data.map(function(d) { return d["Instrument/ISIN"]; }));
   console.log(xScale);
   // yScale.domain([0, d3.max(data, function(d) { return d["Total amount"]; })]);
-  yScale.domain(data.map(function(d) { return d["Total amount"]; }));
+  yScale.domain([0, d3.max(data, function(d) { return d["Total amount"]; })]);
   console.log(yScale);
 
 
