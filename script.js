@@ -75,7 +75,7 @@ d3.csv('data/data.csv')
     .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
   var amountTotal = d3.nest()
-  .key(function(d) { return d["Instrument/ISIN"]; }).sortKeys(d3.descending)
+  .key(function(d) { return d["Instrument/ISIN"]; })
   .rollup(function(v) { return d3.sum(v, function(d) { return d["Total amount"]; }); })
   // .rollup(function(v) { return d3.sum(v, function(d) { return d["Quantity"]; }); })
   .object(data);
@@ -104,6 +104,8 @@ d3.csv('data/data.csv')
   // console.log(quantity)
   // sorted_total_amount = total_amount.slice().sort((a, b) => d3.descending(a[1], b[1]))
 
+  xScale = Object.keys(amountTotal)
+  yScale = Object.values(amountTotal)
 
   // xScale.domain(amountTotal.map(function(d) { return d.key[0]; }));
   // console.log(xScale);
