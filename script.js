@@ -74,11 +74,16 @@ d3.csv('data/data.csv')
   var g = svg.append("g")
     .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
+  console.log(data[0])
+  console.log(data[1])
 
-  total_amount = d3.rollup(data, v => d3.sum(v, d => d["Total amount"]), d => d["Instrument/ISIN"]);
+  console.log(data)
+
+
+  total_amount = d3.rollups(data, v => d3.sum(v, d => d["Total amount"]), d => d["Instrument/ISIN"]);
   console.log(total_amount[0])
   console.log(total_amount[1])
-  quantity = d3.rollup(data, v => d3.sum(v, d => d["Quantity"]), d => d["Instrument/ISIN"]);
+  quantity = d3.rollups(data, v => d3.sum(v, d => d["Quantity"]), d => d["Instrument/ISIN"]);
   // console.log(quantity)
   // sorted_total_amount = total_amount.slice().sort((a, b) => d3.descending(a[1], b[1]))
 
