@@ -82,9 +82,13 @@ d3.csv('data/data.csv')
 
   console.log(amountTotal)
   console.log(amountTotal.AAPL)
-  console.log(amountTotal.values)
+  console.log(amountTotal.keys("AAPL"))
   console.log(amountTotal.entries)
+  // const data = [{SalePrice:"18000",TotalValue:"22500",ratio:1.25},{SalePrice: "128000",TotalValue:"212500",ratio:1.05}]
+  const mappedToArray = amountTotal.map(d => Array.from(Object.values(d)))
+  //[["18000", "22500", 1.25],["128000", "212500", 1.05]]
 
+  console.log(mappedToArray)
 
 
 
