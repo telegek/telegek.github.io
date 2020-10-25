@@ -50,13 +50,11 @@ d3.csv('data/data.csv')
         d["Quantity"] = +d["Quantity"];
         d["Total amount"] = +d["Total amount"];
       }
-
     d["Price"] = +d["Price"];
-    console.log(typeof data)
-    console.log(data[0])
   });
 
-
+  console.log(typeof data)
+  console.log(data[0])
 
   function createTable(tableData) {
     var table = document.createElement('table');
