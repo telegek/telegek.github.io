@@ -96,7 +96,8 @@ d3.csv('data/data.csv')
 
 
 
-
+  // const data = [{SalePrice:"18000",TotalValue:"22500",ratio:1.25},{SalePrice: "128000",TotalValue:"212500",ratio:1.05}]
+  const mappedToArray = sorted_total_amount.map(d => Array.from(Object.values(d)))
 
 
 
@@ -115,7 +116,7 @@ d3.csv('data/data.csv')
     //   ['Sleep',    7]
     // ]);
 
-    var data = google.visualization.arrayToDataTable(sorted_total_amount);
+    var dataG = google.visualization.arrayToDataTable(mappedToArray);
 
 
     var options = {
@@ -124,6 +125,6 @@ d3.csv('data/data.csv')
 
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-    chart.draw(data, options);
+    chart.draw(dataG, options);
   }
 });
