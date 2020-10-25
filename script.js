@@ -80,7 +80,8 @@ d3.csv('data/data.csv')
   // .rollup(function(v) { return d3.sum(v, function(d) { return d["Quantity"]; }); })
   .object(data);
 
-  console.log(amountTotal)
+  console.log(amountTotal[0])
+  console.log[amountTotal[1]]
 
 
 
@@ -95,10 +96,10 @@ d3.csv('data/data.csv')
   // sorted_total_amount = total_amount.slice().sort((a, b) => d3.descending(a[1], b[1]))
 
 
-  xScale.domain(amountTotal.map(function(d) { return d.key[0]; }));
+  // xScale.domain(amountTotal.map(function(d) { return d.key[0]; }));
   // console.log(xScale);
   // yScale.domain([0, d3.max(data, function(d) { return d["Total amount"]; })]);
-  yScale.domain([0, d3.max(amountTotal, function(d) { return d.key[1]; })]);
+  // yScale.domain([0, d3.max(amountTotal, function(d) { return d.key[1]; })]);
   // console.log(yScale);
 
 
