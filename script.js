@@ -53,37 +53,49 @@ d3.csv('data/data.csv')
     d["Price"] = +d["Price"];
   });
 
-  // console.log(typeof data)
-  // console.log(data[0])
+// console.log(typeof data)
+// console.log(data[0])
 
-  var svg = d3.select("svg"),
-    margin = 200,
-    width = svg.attr("width") - margin,
-    height = svg.attr("height") - margin
+var amountTotal = d3.nest()
+.key(function(d) { return d["Instrument/ISIN"]; }).sortKeys(d3.ascending)
+.rollup(function(v) { return d3.sum(v, function(d) { return d["Total amount"]; }); })
+.entries(data);
+// .rollup(function(v) { return d3.sum(v, function(d) { return d["Total amount"]; }); })
+// .rollup(function(v) { return d3.sum(v, function(d) { return d["Quantity"]; }); })
+// .object(data);
 
-  svg.append("text")
-    .attr("transform", "translate(100,0)")
-    .attr("x", 50)
-    .attr("y", 50)
-    .attr("font-size", "24px")
-    .text("Test Holdings by value")
+console.log(amountTotal)
 
-  var xScale = d3.scaleBand().range([0, width]).padding(0.4),
-    yScale = d3.scaleLinear().range([height, 0]);
+// Load the Visualization API and the corechart package.
+google.charts.load('current', {'packages':['corechart']});
 
-  var g = svg.append("g")
-    .attr("transform", "translate(" + 100 + "," + 100 + ")");
+// Set a callback to run when the Google Visualization API is loaded.
+google.charts.setOnLoadCallback(drawChart);
 
-  var amountTotal = d3.nest()
-  .key(function(d) { return d["Instrument/ISIN"]; }).sortKeys(d3.ascending)
-  .rollup(function(v) { return d3.sum(v, function(d) { return d["Total amount"]; }); })
-  .entries(data);
-  // .rollup(function(v) { return d3.sum(v, function(d) { return d["Total amount"]; }); })
-  // .rollup(function(v) { return d3.sum(v, function(d) { return d["Quantity"]; }); })
-  // .object(data);
+// Callback that creates and populates a data table,
+// instantiates the pie chart, passes in the data and
+// draws it.
+function drawChart() {
 
-  console.log(amountTotal)
-  console.log(amountTotal.value)
+  // Create the data table.
+  var data2plot = google.visualization.arrayToDataTable(amountTotal)
+
+  // Set chart options
+  var options = {'title':'How Much Pizza I Ate Last Night',
+                  'width':400,
+                  'height':300};
+
+  // Instantiate and draw our chart, passing in some options.
+  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+  chart.draw(data2plot, options);
+}
+
+
+
+
+
+
+
   // console.log(amountTotal.AAPL)
   
   
