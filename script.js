@@ -52,6 +52,7 @@ d3.csv('data/data.csv')
       }
 
     d["Price"] = +d["Price"];
+    console.log(data)
   });
 
 
