@@ -81,7 +81,7 @@ d3.csv('data/data.csv')
   .object(data);
 
   console.log(amountTotal)
-  console.log(amountTotal.keys)
+  console.log(amountTotal.AAPL)
   console.log(amountTotal.values)
   console.log(amountTotal.entries)
 
