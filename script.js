@@ -76,7 +76,7 @@ d3.csv('data/data.csv')
 
   var amountTotal = d3.nest()
   .key(function(d) { return d["Instrument/ISIN"]; }).sortKeys(d3.descending)
-  .key(function(d) { return d3.sum(v, function(d) { return d["Total amount"]; }); })
+  .key(function(v) { return d3.sum(v, function(d) { return d["Total amount"]; }); })
   .entries(data);
   // .rollup(function(v) { return d3.sum(v, function(d) { return d["Total amount"]; }); })
   // .rollup(function(v) { return d3.sum(v, function(d) { return d["Quantity"]; }); })
