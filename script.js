@@ -104,8 +104,8 @@ d3.csv('data/data.csv')
   // console.log(quantity)
   // sorted_total_amount = total_amount.slice().sort((a, b) => d3.descending(a[1], b[1]))
 
-  xScale = Object.keys(amountTotal)
-  yScale = Object.values(amountTotal)
+  xScale.domain(Object.keys(amountTotal))
+  yScale.domain(Object.values(amountTotal))
 
   // xScale.domain(amountTotal.map(function(d) { return d.key[0]; }));
   // console.log(xScale);
@@ -123,7 +123,7 @@ d3.csv('data/data.csv')
   .attr("x", width - 100)
   .attr("text-anchor", "end")
   .attr("stroke", "black")
-  .text("Year");
+  .text("Ticker");
 
  g.append("g")
   .call(d3.axisLeft(yScale).tickFormat(function(d){
@@ -136,7 +136,7 @@ d3.csv('data/data.csv')
   .attr("dy", "-5.1em")
   .attr("text-anchor", "end")
   .attr("stroke", "black")
-  .text("Stock Price");
+  .text("Holding value");
 
  g.selectAll(".bar")
   .data(data)
