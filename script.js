@@ -84,7 +84,7 @@ d3.csv('data/data.csv')
   // console.log(amountTotal.AAPL)
   
   
-  console.log(Object.keys(totalAmount))
+  console.log(Object.keys(amountTotal))
   
   // console.log(amountTotal.entries)
   // const data = [{SalePrice:"18000",TotalValue:"22500",ratio:1.25},{SalePrice: "128000",TotalValue:"212500",ratio:1.05}]
