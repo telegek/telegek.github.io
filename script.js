@@ -98,6 +98,7 @@ d3.csv('data/data.csv')
 
   // const data = [{SalePrice:"18000",TotalValue:"22500",ratio:1.25},{SalePrice: "128000",TotalValue:"212500",ratio:1.05}]
   const mappedToArray = sorted_total_amount.map(d => Array.from(Object.values(d)))
+  console.log(mappedToArray)
 
 
 
@@ -105,26 +106,26 @@ d3.csv('data/data.csv')
   google.charts.load('current', {'packages':['corechart']});
   google.charts.setOnLoadCallback(drawChart);
 
-  function drawChart() {
+  // function drawChart() {
 
-    // var data = google.visualization.arrayToDataTable([
-    //   ['Task', 'Hours per Day'],
-    //   ['Work',     11],
-    //   ['Eat',      2],
-    //   ['Commute',  2],
-    //   ['Watch TV', 2],
-    //   ['Sleep',    7]
-    // ]);
+  //   // var data = google.visualization.arrayToDataTable([
+  //   //   ['Task', 'Hours per Day'],
+  //   //   ['Work',     11],
+  //   //   ['Eat',      2],
+  //   //   ['Commute',  2],
+  //   //   ['Watch TV', 2],
+  //   //   ['Sleep',    7]
+  //   // ]);
 
-    var dataG = google.visualization.arrayToDataTable(mappedToArray);
+  //   var dataG = google.visualization.arrayToDataTable(mappedToArray);
 
 
-    var options = {
-      title: 'My Daily Activities'
-    };
+  //   var options = {
+  //     title: 'My Daily Activities'
+  //   };
 
-    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  //   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-    chart.draw(dataG, options);
-  }
+  //   chart.draw(dataG, options);
+  // }
 });
