@@ -105,7 +105,7 @@ d3.csv('data/data.csv')
   // sorted_total_amount = total_amount.slice().sort((a, b) => d3.descending(a[1], b[1]))
 
   xScale.domain(Object.keys(amountTotal))
-  yScale.domain(Object.values(amountTotal))
+  yScale.domain([0, Object.values(amountTotal)])
 
   // xScale.domain(amountTotal.map(function(d) { return d.key[0]; }));
   // console.log(xScale);
