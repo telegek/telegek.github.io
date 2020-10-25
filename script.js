@@ -83,6 +83,7 @@ d3.csv('data/data.csv')
   // .object(data);
 
   console.log(amountTotal)
+  console.log(amountTotal.value)
   // console.log(amountTotal.AAPL)
   
   
