@@ -79,6 +79,14 @@ d3.csv('data/data.csv')
 
   console.log(data)
 
+  var expensesTotal = d3.nest()
+  .key(function(d) { return d["Instrument/ISIN"]; })
+  .rollup(function(v) { return d3.sum(v, function(d) { return d["Total amount"]; }); })
+  .object(data);
+  console.log(expensesTotal)
+
+
+
 
   total_amount = d3.rollups(data, v => d3.sum(v, d => d["Total amount"]), d => d["Instrument/ISIN"]);
   console.log(total_amount[0])
