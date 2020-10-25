@@ -1,6 +1,5 @@
 d3.csv('data/data.csv')
 .then(function(data) {
-  // const columns = ['Instrument/ISIN', 'Quantity', 'Price', 'Trading day']
   
   data.forEach(function(d) {
 
@@ -51,6 +50,28 @@ function drawChart() {
   var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
   chart.draw(data2plot, options);
 }
+
+
+	// Width and height of SVG
+	var w = 150;
+	var h = 175;
+
+	//Create SVG element
+	var svg = d3.select("body")
+		.append("svg")
+		.attr("width", w)
+		.attr("height", h);
+
+	// Select and generate rectangle elements
+	svg.selectAll( "rect" )
+		.data( amountTotal )
+		.enter()
+		.append("rect")
+		.attr( "x", 30 )
+		.attr( "y", 0 )
+		.attr( "width", 20 )
+		.attr( "height", 100 )
+		.attr( "fill", "steelblue");
 
 
 });
