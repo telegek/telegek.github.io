@@ -80,8 +80,7 @@ d3.csv('data/data.csv')
   // .rollup(function(v) { return d3.sum(v, function(d) { return d["Quantity"]; }); })
   .object(data);
 
-  console.log(amountTotal[0])
-  console.log[amountTotal[1]]
+  console.log(amountTotal)
 
 
 
