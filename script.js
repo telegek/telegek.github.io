@@ -69,7 +69,7 @@ d3.csv('data/data.csv')
     .attr("x", 50)
     .attr("y", 50)
     .attr("font-size", "24px")
-    .text("XYZ Foods Stock Price")
+    .text("Test Holdings by value")
 
   var xScale = d3.scaleBand().range([0, width]).padding(0.4),
     yScale = d3.scaleLinear().range([height, 0]);
@@ -77,11 +77,17 @@ d3.csv('data/data.csv')
   var g = svg.append("g")
     .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
-  xScale.domain(data.map(function(d) { return d["Instrument/ISIN"]; }));
-  yScale.domain([0, d3.max(data, function(d) { return d["Quantity"]; })]);
+
+  total_amount = d3.rollups(data, v => d3.sum(v, d => d["Total amount"]), d => d["Instrument/ISIN"]);
+  quantity = d3.rollups(data, v => d3.sum(v, d => d["Quantity"]), d => d["Instrument/ISIN"]);
+  sorted_total_amount = total_amount.slice().sort((a, b) => d3.descending(a[1], b[1]))
 
 
-  
+  xScale.domain(sorted_total_amount.map(function(d) { return d["Instrument/ISIN"]; }));
+  yScale.domain([0, d3.max(sorted_total_amount, function(d) { return d["Total amount"]; })]);
+
+
+
   g.append("g")
   .attr("transform", "translate(0," + height + ")")
   .call(d3.axisBottom(xScale))
