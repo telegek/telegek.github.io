@@ -56,39 +56,99 @@ d3.csv('data/data.csv')
   console.log(typeof data)
   console.log(data[0])
 
-  function createTable(tableData) {
-    var table = document.createElement('table');
-    var tableBody = document.createElement('tbody');
+
+
+
+  var svg = d3.select("svg"),
+    margin = 200,
+    width = svg.attr("width") - margin,
+    height = svg.attr("height") - margin
+
+  svg.append("text")
+    .attr("transform", "translate(100,0)")
+    .attr("x", 50)
+    .attr("y", 50)
+    .attr("font-size", "24px")
+    .text("XYZ Foods Stock Price")
+
+  var xScale = d3.scaleBand().range([0, width]).padding(0.4),
+    yScale = d3.scaleLinear().range([height, 0]);
+
+  var g = svg.append("g")
+    .attr("transform", "translate(" + 100 + "," + 100 + ")");
+
+  xScale.domain(data.map(function(d) { return d["Instrument/ISIN"]; }));
+  yScale.domain([0, d3.max(data, function(d) { return d["Quantity"]; })]);
+
+
   
-    tableData.forEach(function(rowData) {
-      var row = document.createElement('tr');
+  g.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(xScale))
+  .append("text")
+  .attr("y", height - 250)
+  .attr("x", width - 100)
+  .attr("text-anchor", "end")
+  .attr("stroke", "black")
+  .text("Year");
+
+ g.append("g")
+  .call(d3.axisLeft(yScale).tickFormat(function(d){
+      return "$" + d;
+  })
+  .ticks(10))
+  .append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", 6)
+  .attr("dy", "-5.1em")
+  .attr("text-anchor", "end")
+  .attr("stroke", "black")
+  .text("Stock Price");
+
+ g.selectAll(".bar")
+  .data(data)
+  .enter().append("rect")
+  .attr("class", "bar")
+  .attr("x", function(d) { return xScale(d.year); })
+  .attr("y", function(d) { return yScale(d.value); })
+  .attr("width", xScale.bandwidth())
+  .attr("height", function(d) { return height - yScale(d.value); });
+
+
+
+  // function createTable(tableData) {
+  //   var table = document.createElement('table');
+  //   var tableBody = document.createElement('tbody');
   
-      rowData.forEach(function(cellData) {
-        var cell = document.createElement('td');
-        cell.appendChild(document.createTextNode(cellData));
-        row.appendChild(cell);
-      });
+  //   tableData.forEach(function(rowData) {
+  //     var row = document.createElement('tr');
   
-      tableBody.appendChild(row);
-    });
+  //     rowData.forEach(function(cellData) {
+  //       var cell = document.createElement('td');
+  //       cell.appendChild(document.createTextNode(cellData));
+  //       row.appendChild(cell);
+  //     });
   
-    table.appendChild(tableBody);
-    document.body.appendChild(table);
-  }
+  //     tableBody.appendChild(row);
+  //   });
+  
+  //   table.appendChild(tableBody);
+  //   document.body.appendChild(table);
+  // }
 
 
 
-  total_amount = d3.rollups(data, v => d3.sum(v, d => d["Total amount"]), d => d["Instrument/ISIN"]);
-  quantity = d3.rollups(data, v => d3.sum(v, d => d["Quantity"]), d => d["Instrument/ISIN"]);
-  console.log(total_amount)
-  // .sort((a, b) => a[1] - b[1]);
-  sorted_total_amount = total_amount.slice().sort((a, b) => d3.descending(a[1], b[1]))
-  // map.sort(d3.ascending)
+  // total_amount = d3.rollups(data, v => d3.sum(v, d => d["Total amount"]), d => d["Instrument/ISIN"]);
+  // quantity = d3.rollups(data, v => d3.sum(v, d => d["Quantity"]), d => d["Instrument/ISIN"]);
+  // console.log(total_amount)
+  // // .sort((a, b) => a[1] - b[1]);
+  // sorted_total_amount = total_amount.slice().sort((a, b) => d3.descending(a[1], b[1]))
+  // // map.sort(d3.ascending)
 
-  console.log(sorted_total_amount)
+  // console.log(sorted_total_amount)
 
-  createTable(sorted_total_amount);
-  make_single_stocks()
+  // createTable(sorted_total_amount);
+  // make_single_stocks()
 
 
 
@@ -97,14 +157,14 @@ d3.csv('data/data.csv')
 
 
   // const data = [{SalePrice:"18000",TotalValue:"22500",ratio:1.25},{SalePrice: "128000",TotalValue:"212500",ratio:1.05}]
-  const mappedToArray = sorted_total_amount.map(d => Array.from(Object.values(d)))
-  console.log(mappedToArray)
+  // const mappedToArray = sorted_total_amount.map(d => Array.from(Object.values(d)))
+  // console.log(mappedToArray)
 
 
 
 
-  google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
+  // google.charts.load('current', {'packages':['corechart']});
+  // google.charts.setOnLoadCallback(drawChart);
 
   // function drawChart() {
 
