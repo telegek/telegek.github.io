@@ -34,7 +34,7 @@ var make_single_stocks = function(data) {
 
 d3.csv('data/data.csv')
 .then(function(data) {
-  const columns = ['Instrument/ISIN', 'Quantity', 'Price', 'Trading day']
+  // const columns = ['Instrument/ISIN', 'Quantity', 'Price', 'Trading day']
   
   data.forEach(function(d) {
 
@@ -52,7 +52,8 @@ d3.csv('data/data.csv')
       }
 
     d["Price"] = +d["Price"];
-    console.log(data)
+    console.log(typeof data)
+    console.log(data[0])
   });
 
 
