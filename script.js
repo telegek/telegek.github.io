@@ -74,16 +74,12 @@ d3.csv('data/data.csv')
   var g = svg.append("g")
     .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
-  console.log(data[0])
-  console.log(data[1])
-
-  console.log(data)
-
   var amountTotal = d3.nest()
-  .key(function(d) { return d["Instrument/ISIN"]; })
+  .key(function(d) { return d["Instrument/ISIN"]; }).sortKeys(d3.descending)
   .rollup(function(v) { return d3.sum(v, function(d) { return d["Total amount"]; }); })
   // .rollup(function(v) { return d3.sum(v, function(d) { return d["Quantity"]; }); })
   .object(data);
+
   console.log(amountTotal)
 
 
@@ -99,10 +95,10 @@ d3.csv('data/data.csv')
   // sorted_total_amount = total_amount.slice().sort((a, b) => d3.descending(a[1], b[1]))
 
 
-  xScale.domain(amountTotal.map(function(d) { return d[0]; }));
+  xScale.domain(amountTotal.map(function(d) { return d.key[0]; }));
   // console.log(xScale);
   // yScale.domain([0, d3.max(data, function(d) { return d["Total amount"]; })]);
-  yScale.domain([0, d3.max(amountTotal, function(d) { return d[1]; })]);
+  yScale.domain([0, d3.max(amountTotal, function(d) { return d.key[1]; })]);
   // console.log(yScale);
 
 
