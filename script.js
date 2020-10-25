@@ -18,7 +18,7 @@ d3.csv('data/data.csv')
       }
     d["Price"] = +d["Price"];
   });
-});
+
 
 var amountTotal = d3.nest()
 .key(function(d) { return d["Instrument/ISIN"]; }).sortKeys(d3.ascending)
@@ -50,3 +50,6 @@ function drawChart() {
   var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
   chart.draw(data2plot, options);
 }
+
+
+});
