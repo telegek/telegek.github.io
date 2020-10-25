@@ -82,10 +82,10 @@ d3.csv('data/data.csv')
   // sorted_total_amount = total_amount.slice().sort((a, b) => d3.descending(a[1], b[1]))
 
 
-  xScale.domain(data.map(function(d) { return d["Instrument/ISIN"]; }));
+  xScale.domain(total_amount.map(function(d) { return d[0]; }));
   console.log(xScale);
   // yScale.domain([0, d3.max(data, function(d) { return d["Total amount"]; })]);
-  yScale.domain([0, d3.max(data, function(d) { return d["Total amount"]; })]);
+  yScale.domain([0, d3.max(total_amount, function(d) { return d[1]; })]);
   console.log(yScale);
 
 
