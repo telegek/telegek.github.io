@@ -56,9 +56,6 @@ d3.csv('data/data.csv')
   console.log(typeof data)
   console.log(data[0])
 
-
-
-
   var svg = d3.select("svg"),
     margin = 200,
     width = svg.attr("width") - margin,
@@ -80,11 +77,11 @@ d3.csv('data/data.csv')
 
   total_amount = d3.rollup(data, v => d3.sum(v, d => d["Total amount"]), d => d["Instrument/ISIN"]);
   quantity = d3.rollup(data, v => d3.sum(v, d => d["Quantity"]), d => d["Instrument/ISIN"]);
-  sorted_total_amount = total_amount.slice().sort((a, b) => d3.descending(a[1], b[1]))
+  // sorted_total_amount = total_amount.slice().sort((a, b) => d3.descending(a[1], b[1]))
 
 
-  xScale.domain(sorted_total_amount.map(function(d) { return d["Instrument/ISIN"]; }));
-  yScale.domain([0, d3.max(sorted_total_amount, function(d) { return d["Total amount"]; })]);
+  xScale.domain(total_amount.map(function(d) { return d["Instrument/ISIN"]; }));
+  yScale.domain([0, d3.max(total_amount, function(d) { return d["Total amount"]; })]);
 
 
 
