@@ -40,6 +40,7 @@ function drawChart() {
 
   // Create the data table.
   var data2plot = new google.visualization.DataTable(amountTotal);
+  console.log(data2plot)
 
   // Set chart options
   var options = {'title':'How Much Pizza I Ate Last Night',
