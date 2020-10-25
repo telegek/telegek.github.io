@@ -39,7 +39,7 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
 
   // Create the data table.
-  var data2plot = google.visualization.arrayToDataTable(amountTotal)
+  var data2plot = new google.visualization.DataTable(amountTotal);
 
   // Set chart options
   var options = {'title':'How Much Pizza I Ate Last Night',
